@@ -1,0 +1,318 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+/* Logo styling with enhanced animations */
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter, transform;
+  transition: filter 300ms cubic-bezier(0.4, 0, 0.2, 1), 
+  transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em rgba(253, 224, 71, 0.7));
+  transform: scale(1.05);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em rgba(97, 218, 251, 0.7));
+}
+
+/* Enhanced logo spin animation */
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  a:nth-of-type(2) .logo:hover {
+    animation-duration: 10s;
+  }
+}
+
+/* Professional card styling */
+.card {
+  padding: 2em;
+  background-color: rgba(27, 38, 59, 0.7);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(253, 224, 71, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 48px rgba(253, 224, 71, 0.15);
+  border-color: rgba(253, 224, 71, 0.3);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(253, 224, 71, 0.7), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.card:hover::before {
+  transform: translateX(100%);
+}
+
+.read-the-docs {
+  color: #888;
+  transition: color 0.3s ease;
+  margin-top: 2rem;
+  font-size: 0.9em;
+  position: relative;
+  display: inline-block;
+}
+
+.read-the-docs:hover {
+  color: rgba(253, 224, 71, 0.8);
+}
+
+.read-the-docs::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 50%;
+  background-color: rgba(253, 224, 71, 0.6);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.read-the-docs:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Page transition animations */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 400ms, transform 400ms;
+}
+
+.page-exit {
+  opacity: 1;
+}
+
+.page-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+/* Content sections styling */
+.content-section {
+  margin: 3rem 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.content-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scrollbar for containers */
+.scrollable-container {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(253, 224, 71, 0.5) rgba(27, 38, 59, 0.5);
+}
+
+.scrollable-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollable-container::-webkit-scrollbar-track {
+  background: rgba(27, 38, 59, 0.5);
+  border-radius: 10px;
+}
+
+.scrollable-container::-webkit-scrollbar-thumb {
+  background-color: rgba(253, 224, 71, 0.5);
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.scrollable-container::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(253, 224, 71, 0.8);
+}
+
+/* Loading animations */
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(27, 38, 59, 0.3);
+  border-radius: 50%;
+  border-top-color: rgba(253, 224, 71, 0.7);
+  animation: spinner 1s linear infinite;
+  margin: 2rem auto;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Shimmer loading effect */
+.shimmer {
+  background: linear-gradient(90deg,
+    rgba(27, 38, 59, 0.1) 0%,
+    rgba(27, 38, 59, 0.2) 50%,
+    rgba(27, 38, 59, 0.1) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Highlight effect for important elements */
+.highlight {
+  position: relative;
+  z-index: 1;
+}
+
+.highlight::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(253, 224, 71, 0.15);
+  transform: scale(0.9);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  border-radius: 8px;
+}
+
+.highlight:hover::before {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Grid layout with animations */
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.grid-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.grid-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered animations for lists */
+.stagger-list > li {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.stagger-list > li:nth-child(1) { animation: stagger-fade-in 0.3s 0.1s forwards; }
+.stagger-list > li:nth-child(2) { animation: stagger-fade-in 0.3s 0.2s forwards; }
+.stagger-list > li:nth-child(3) { animation: stagger-fade-in 0.3s 0.3s forwards; }
+.stagger-list > li:nth-child(4) { animation: stagger-fade-in 0.3s 0.4s forwards; }
+.stagger-list > li:nth-child(5) { animation: stagger-fade-in 0.3s 0.5s forwards; }
+.stagger-list > li:nth-child(n+6) { animation: stagger-fade-in 0.3s 0.6s forwards; }
+
+@keyframes stagger-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tooltip component */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-content {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  padding: 0.5rem 1rem;
+  background: rgba(27, 38, 59, 0.95);
+  color: #fff;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 100;
+  border: 1px solid rgba(253, 224, 71, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tooltip-container:hover .tooltip-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.tooltip-content::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(27, 38, 59, 0.95) transparent transparent transparent;
+}

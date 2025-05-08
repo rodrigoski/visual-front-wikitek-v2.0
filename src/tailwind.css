@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-dark-primary text-off-white min-h-screen font-sans;
+    background-image: 
+      linear-gradient(
+        to bottom right,
+        rgba(13, 27, 42, 0.97),
+        rgba(27, 38, 59, 0.95)
+      ),
+      url('/img/tec-bg.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  /* Efecto de partículas optimizado */
+  .bg-particles::before {
+    content: '';
+    @apply absolute inset-0 z-0 opacity-10 pointer-events-none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    animation: particles 40s linear infinite;
+  }
+
+  @keyframes particles {
+    0% { background-position: 0 0; }
+    100% { background-position: 100% 100%; }
+  }
+}
+
+@layer components {
+  .card-hover {
+    @apply transition-transform duration-300 ease-out 
+           hover:scale-[1.015] hover:shadow-lg hover:shadow-neon-yellow/10;
+    transform-style: preserve-3d;
+  }
+
+  .border-glow {
+    @apply relative before:absolute before:inset-0 before:rounded-xl 
+           before:border before:border-transparent before:bg-gradient-to-br 
+           before:from-neon-yellow/20 before:to-transparent 
+           before:opacity-0 before:transition-opacity before:duration-300;
+    &:hover::before {
+      @apply opacity-100;
+    }
+  }
+}
+
+/* Animaciones esenciales */
+@keyframes subtle-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-subtle-float {
+  animation: subtle-float 6s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
