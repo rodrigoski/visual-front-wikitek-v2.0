@@ -11,14 +11,30 @@ const StudentsList = ({ refreshKey }) => {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          setError('No hay sesión activa');
+          return;
+        }
+    
         const response = await axios.get('http://localhost:5000/students', {
-          headers: {
+          headers: { 
             Authorization: `Bearer ${token}`
           }
         });
-        setStudents(response.data);
+    
+        // Asegurar que skills sea un array incluso si está vacío
+        const formattedStudents = response.data.map(student => ({
+          ...student,
+          skills: student.skills || []
+        }));
+    
+        setStudents(formattedStudents);
+        
       } catch (err) {
-        setError(err.response?.data?.error || 'Error al cargar estudiantes');
+        const errorMessage = err.response?.data?.error || 'Error desconocido';
+        setError(`Error al cargar estudiantes: ${errorMessage}`);
+        console.error('Detalles del error:', err);
       } finally {
         setLoading(false);
       }
